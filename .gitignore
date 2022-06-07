@@ -45,8 +45,11 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Ignora key.properties
+/android/key.properties
+
 # Application configuration in Firebase
 /android/app/google-services.json
 
-# SHA1 App
-sha1.txt
+# SHA1 App & Commands for release
+sha1&release.txt

@@ -6,4 +6,4 @@
 
 ---
 
-#### This implementation features updated versions of some libraries, mainly BLoC and Firebase, and with null safety.
+#### This implementation features updated versions of some libraries, mainly BLoC, AutoRoute(v3.2.0) and Firebase, and with null safety.

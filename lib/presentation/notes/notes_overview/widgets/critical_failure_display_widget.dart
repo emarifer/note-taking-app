@@ -36,7 +36,7 @@ class CriticalFailureDisplay extends StatelessWidget {
               ],
             ),
             onPressed: () {
-              print('Sending email!');
+              // print('Sending email!');
             },
           ),
         ],
