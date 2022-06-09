@@ -34,6 +34,11 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
+                note.date.getOrCrash(),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Divider(color: Colors.grey[700]),
+              Text(
                 note.body.getOrCrash(),
                 style: const TextStyle(fontSize: 18),
               ),

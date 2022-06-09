@@ -71,3 +71,12 @@ class List3<T> extends ValueObject<KtList<T>> {
 
   bool get isFull => length == maxLength;
 }
+
+class NoteDate extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory NoteDate({required String input}) => NoteDate._(right(input));
+
+  const NoteDate._(this.value);
+}

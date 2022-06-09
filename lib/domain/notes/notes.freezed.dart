@@ -20,6 +20,7 @@ mixin _$Note {
   NoteBody get body => throw _privateConstructorUsedError;
   NoteColor get color => throw _privateConstructorUsedError;
   List3<TodoItem> get todos => throw _privateConstructorUsedError;
+  NoteDate get date => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteCopyWith<Note> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +31,11 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueId id,
+      NoteBody body,
+      NoteColor color,
+      List3<TodoItem> todos,
+      NoteDate date});
 }
 
 /// @nodoc
@@ -47,6 +52,7 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
     Object? body = freezed,
     Object? color = freezed,
     Object? todos = freezed,
+    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -65,6 +71,10 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List3<TodoItem>,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as NoteDate,
     ));
   }
 }
@@ -75,7 +85,11 @@ abstract class _$$_NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$$_NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, NoteBody body, NoteColor color, List3<TodoItem> todos});
+      {UniqueId id,
+      NoteBody body,
+      NoteColor color,
+      List3<TodoItem> todos,
+      NoteDate date});
 }
 
 /// @nodoc
@@ -93,6 +107,7 @@ class __$$_NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
     Object? body = freezed,
     Object? color = freezed,
     Object? todos = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$_Note(
       id: id == freezed
@@ -111,6 +126,10 @@ class __$$_NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List3<TodoItem>,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as NoteDate,
     ));
   }
 }
@@ -122,7 +141,8 @@ class _$_Note extends _Note {
       {required this.id,
       required this.body,
       required this.color,
-      required this.todos})
+      required this.todos,
+      required this.date})
       : super._();
 
   @override
@@ -133,10 +153,12 @@ class _$_Note extends _Note {
   final NoteColor color;
   @override
   final List3<TodoItem> todos;
+  @override
+  final NoteDate date;
 
   @override
   String toString() {
-    return 'Note(id: $id, body: $body, color: $color, todos: $todos)';
+    return 'Note(id: $id, body: $body, color: $color, todos: $todos, date: $date)';
   }
 
   @override
@@ -147,7 +169,8 @@ class _$_Note extends _Note {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.body, body) &&
             const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality().equals(other.todos, todos));
+            const DeepCollectionEquality().equals(other.todos, todos) &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
@@ -156,7 +179,8 @@ class _$_Note extends _Note {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(body),
       const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(todos));
+      const DeepCollectionEquality().hash(todos),
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +193,8 @@ abstract class _Note extends Note {
       {required final UniqueId id,
       required final NoteBody body,
       required final NoteColor color,
-      required final List3<TodoItem> todos}) = _$_Note;
+      required final List3<TodoItem> todos,
+      required final NoteDate date}) = _$_Note;
   const _Note._() : super._();
 
   @override
@@ -180,6 +205,8 @@ abstract class _Note extends Note {
   NoteColor get color => throw _privateConstructorUsedError;
   @override
   List3<TodoItem> get todos => throw _privateConstructorUsedError;
+  @override
+  NoteDate get date => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;

@@ -18,6 +18,7 @@ abstract class Note implements _$Note {
     required NoteBody body,
     required NoteColor color,
     required List3<TodoItem> todos,
+    required NoteDate date,
   }) = _Note;
 
   factory Note.empty() => Note(
@@ -25,6 +26,7 @@ abstract class Note implements _$Note {
         body: NoteBody(input: ''),
         color: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(input: emptyList()),
+        date: NoteDate(input: ''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption => body.failureOrUnit

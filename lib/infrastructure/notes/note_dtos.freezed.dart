@@ -28,7 +28,7 @@ mixin _$NoteDto {
   List<TodoItemDto> get todos =>
       throw _privateConstructorUsedError; // Es un "placehoder" => tiempo en el servidor cuando una nota es escrita o actualizada
   @ServerTimestampConverter()
-  FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
+  dynamic get serverTimeStamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $NoteDtoCopyWith<$Res> {
       String body,
       int color,
       List<TodoItemDto> todos,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      @ServerTimestampConverter() dynamic serverTimeStamp});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$NoteDtoCopyWithImpl<$Res> implements $NoteDtoCopyWith<$Res> {
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
+              as dynamic,
     ));
   }
 }
@@ -99,7 +99,7 @@ abstract class _$$_NoteDtoCopyWith<$Res> implements $NoteDtoCopyWith<$Res> {
       String body,
       int color,
       List<TodoItemDto> todos,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      @ServerTimestampConverter() dynamic serverTimeStamp});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_NoteDtoCopyWithImpl<$Res> extends _$NoteDtoCopyWithImpl<$Res>
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
+              as dynamic,
     ));
   }
 }
@@ -177,7 +177,7 @@ class _$_NoteDto extends _NoteDto {
 // Es un "placehoder" => tiempo en el servidor cuando una nota es escrita o actualizada
   @override
   @ServerTimestampConverter()
-  final FieldValue serverTimeStamp;
+  final dynamic serverTimeStamp;
 
   @override
   String toString() {
@@ -220,13 +220,12 @@ class _$_NoteDto extends _NoteDto {
 
 abstract class _NoteDto extends NoteDto {
   const factory _NoteDto(
-      {@JsonKey(ignore: true)
-          final String? id,
-      required final String body,
-      required final int color,
-      required final List<TodoItemDto> todos,
-      @ServerTimestampConverter()
-          required final FieldValue serverTimeStamp}) = _$_NoteDto;
+          {@JsonKey(ignore: true) final String? id,
+          required final String body,
+          required final int color,
+          required final List<TodoItemDto> todos,
+          @ServerTimestampConverter() required final dynamic serverTimeStamp}) =
+      _$_NoteDto;
   const _NoteDto._() : super._();
 
   factory _NoteDto.fromJson(Map<String, dynamic> json) = _$_NoteDto.fromJson;
@@ -242,7 +241,7 @@ abstract class _NoteDto extends NoteDto {
   List<TodoItemDto> get todos => throw _privateConstructorUsedError;
   @override // Es un "placehoder" => tiempo en el servidor cuando una nota es escrita o actualizada
   @ServerTimestampConverter()
-  FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
+  dynamic get serverTimeStamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_NoteDtoCopyWith<_$_NoteDto> get copyWith =>

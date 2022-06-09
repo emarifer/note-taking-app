@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:intl/intl.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,7 +23,7 @@ abstract class NoteDto implements _$NoteDto {
     required int color,
     required List<TodoItemDto> todos,
     // Es un "placehoder" => tiempo en el servidor cuando una nota es escrita o actualizada
-    @ServerTimestampConverter() required FieldValue serverTimeStamp,
+    @ServerTimestampConverter() required dynamic serverTimeStamp,
     // VER NOTA ABAJO:
   }) = _NoteDto;
 
@@ -43,6 +44,11 @@ abstract class NoteDto implements _$NoteDto {
         color: NoteColor(Color(color)),
         todos:
             List3(input: todos.map((dto) => dto.toDomain()).toImmutableList()),
+        date: NoteDate(
+          input: DateFormat('dd/MM/yyyy • hh:mm a').format(
+            (serverTimeStamp as Timestamp).toDate(),
+          ),
+        ),
       );
 
   factory NoteDto.fromJson(Map<String, dynamic> json) =>
@@ -104,6 +110,12 @@ abstract class TodoItemDto implements _$TodoItemDto {
 
     [S] es el tipo del valor almacenado en JSON. Debe ser un tipo JSON válido, como [String], [int]
      o [Map<String, dynamic>].
+ */
+
+/**
+ * SOBRE LA ADICION DE LA FECHA A LA NOTA VER COMENTARIO DE Sangam Shrestha
+ * EN EL VIDEO DE RESOCODER:
+ * https://www.youtube.com/watch?v=_SMDMUh_aDQ&list=PLB6lc7nQ1n4iS5p-IezFFgqP6YvAJy84U&index=14&t=17s
  */
 
 /**
