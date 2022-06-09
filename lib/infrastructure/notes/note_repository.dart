@@ -8,6 +8,7 @@ import '../../domain/notes/i_note_repository.dart';
 import '../../domain/notes/note_failure.dart';
 import '../../domain/notes/notes.dart';
 import '../core/firestore_helpers.dart';
+import '../core/offline_detector_helper.dart';
 import 'note_dtos.dart';
 
 @LazySingleton(as: INoteRepository)
@@ -76,10 +77,14 @@ class NoteRepository implements INoteRepository {
 
   @override
   Future<Either<NoteFailure, Unit>> create(Note note) async {
+    final bool isOnline = await hasNetwork();
+
     try {
       final userDoc = await _firestore.userDocument();
       final noteDto = NoteDto.fromDomain(note);
-      await userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson());
+      isOnline
+          ? await userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson())
+          : userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson());
 
       return right(unit);
     } on FirebaseException catch (e) {
@@ -94,10 +99,16 @@ class NoteRepository implements INoteRepository {
 
   @override
   Future<Either<NoteFailure, Unit>> update(Note note) async {
+    final bool isOnline = await hasNetwork();
+
     try {
       final userDoc = await _firestore.userDocument();
       final noteDto = NoteDto.fromDomain(note);
-      await userDoc.noteCollection.doc(noteDto.id).update(noteDto.toJson());
+      isOnline
+          ? await userDoc.noteCollection
+              .doc(noteDto.id)
+              .update(noteDto.toJson())
+          : userDoc.noteCollection.doc(noteDto.id).update(noteDto.toJson());
 
       return right(unit);
     } on FirebaseException catch (e) {
@@ -149,4 +160,10 @@ class NoteRepository implements INoteRepository {
  * https://medium.com/source-words/how-to-manually-install-update-and-uninstall-fonts-on-linux-a8d09a3853b0
  * LA FUENTE SUSTITUIDA ES 'Droid Sans Mono' EN SETTINGS DE VSCODE
  * 
+ */
+
+/**
+ * AÑADIDO FUNCIONAMIENTO OFFLINE. VER:
+ * https://stackoverflow.com/questions/49648022/check-whether-there-is-an-internet-connection-available-on-flutter-app#56959146
+ * https://stackoverflow.com/questions/53549773/using-offline-persistence-in-firestore-in-a-flutter-app
  */

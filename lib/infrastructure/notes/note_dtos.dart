@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:intl/intl.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 import 'package:kt_dart/collection.dart';
 
 import '../../domain/core/value_objects.dart';
@@ -46,7 +46,7 @@ abstract class NoteDto implements _$NoteDto {
             List3(input: todos.map((dto) => dto.toDomain()).toImmutableList()),
         date: NoteDate(
           input: DateFormat('dd/MM/yyyy • hh:mm a').format(
-            (serverTimeStamp as Timestamp).toDate(),
+            ((serverTimeStamp ?? Timestamp.now()) as Timestamp).toDate(),
           ),
         ),
       );
@@ -95,6 +95,12 @@ abstract class TodoItemDto implements _$TodoItemDto {
   factory TodoItemDto.fromJson(Map<String, dynamic> json) =>
       _$TodoItemDtoFromJson(json);
 }
+
+/**
+ * AÑADIDO FUNCIONAMIENTO OFFLINE. VER:
+ * https://stackoverflow.com/questions/49648022/check-whether-there-is-an-internet-connection-available-on-flutter-app#56959146
+ * https://stackoverflow.com/questions/53549773/using-offline-persistence-in-firestore-in-a-flutter-app
+ */
 
 /**
  * EXPLICACION DE FIELDVALUE DE RESOCODER:
