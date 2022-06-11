@@ -26,7 +26,7 @@ abstract class Note implements _$Note {
         body: NoteBody(input: ''),
         color: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(input: emptyList()),
-        date: NoteDate(input: ''),
+        date: NoteDate(input: DateTime.now()),
       );
 
   Option<ValueFailure<dynamic>> get failureOption => body.failureOrUnit

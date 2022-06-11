@@ -9,7 +9,7 @@ import 'failures.dart';
 abstract class ValueObject<T> {
   const ValueObject();
 
-  Either<ValueFailure<T>, T> get value;
+  Either<ValueFailure<T>, T> get value; // VER NOTA ABAJO:
 
   /// Throws [UnexpectedValueError] containing the [ValueFailure]
   T getOrCrash() => value.fold((f) => throw UnexpectedValueError(f), id);
@@ -57,3 +57,9 @@ class UniqueId extends ValueObject<String> {
 
   const UniqueId._(this.value);
 }
+
+/**
+ * ANULACION DE GETTERS EN CLASES ABSTRACTAS. VER:
+ * https://stackoverflow.com/questions/65959810/dart-how-to-define-a-property-that-must-be-implemented-in-any-classes-inheriti
+ * https://stackoverflow.com/questions/64044423/override-final-properties-in-abstract-class-dart
+ */

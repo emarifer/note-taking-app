@@ -136,11 +136,21 @@ class SignInForm extends StatelessWidget {
                 onPressed: () => context
                     .read<SignInFormBloc>()
                     .add(const SignInFormEvent.signInWithGooglePressed()),
-                child: const Text(
-                  'SIGN IN WITH GOOGLE',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/google_icon.png',
+                      scale: 20,
+                    ),
+                    const SizedBox(width: 15),
+                    const Text(
+                      'SIGN IN WITH GOOGLE',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: Theme.of(context).colorScheme.secondary,

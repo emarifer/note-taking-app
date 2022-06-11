@@ -76,7 +76,8 @@ class NoteDate extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory NoteDate({required String input}) => NoteDate._(right(input));
+  factory NoteDate({required DateTime input}) =>
+      NoteDate._(right(makeDatetimeAsFormattedString(input)));
 
   const NoteDate._(this.value);
 }

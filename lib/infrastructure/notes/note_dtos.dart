@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 import 'package:kt_dart/collection.dart';
 
 import '../../domain/core/value_objects.dart';
@@ -45,9 +44,7 @@ abstract class NoteDto implements _$NoteDto {
         todos:
             List3(input: todos.map((dto) => dto.toDomain()).toImmutableList()),
         date: NoteDate(
-          input: DateFormat('dd/MM/yyyy • hh:mm a').format(
-            ((serverTimeStamp ?? Timestamp.now()) as Timestamp).toDate(),
-          ),
+          input: ((serverTimeStamp ?? Timestamp.now()) as Timestamp).toDate(),
         ),
       );
 
