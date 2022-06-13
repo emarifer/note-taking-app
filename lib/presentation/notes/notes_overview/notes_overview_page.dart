@@ -1,4 +1,4 @@
-import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,8 +40,7 @@ class NotesOverviewPage extends StatelessWidget {
             listener: (context, state) {
               state.maybeMap(
                 deleteFailure: (deleteFailureState) {
-                  Flushbar(
-                    icon: const Icon(Icons.warning, color: Colors.red),
+                  FlushbarHelper.createError(
                     duration: const Duration(seconds: 5),
                     message: deleteFailureState.noteFailure.map(
                       unexpected: (_) =>

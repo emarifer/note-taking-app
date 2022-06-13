@@ -1,15 +1,15 @@
-import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:note_taking_app/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:provider/provider.dart';
 
 import '../../../application/notes/note_form/note_form_bloc.dart';
 import '../../../domain/notes/notes.dart';
 import '../../../injection.dart';
 import '../../routes/app_router.dart';
+import 'misc/todo_item_presentation_classes.dart';
 import 'widgets/widgets.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -33,9 +33,8 @@ class NoteFormPage extends StatelessWidget {
             () {},
             (either) => either.fold(
               (failure) {
-                Flushbar(
-                  icon: const Icon(Icons.warning, color: Colors.red),
-                  duration: const Duration(seconds: 4),
+                FlushbarHelper.createError(
+                  duration: const Duration(seconds: 5),
                   message: failure.map(
                     unexpected: (_) =>
                         'Unexpected error occured, please contact support.',
